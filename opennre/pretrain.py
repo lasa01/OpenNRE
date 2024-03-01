@@ -72,17 +72,17 @@ def download_semeval(root_path=default_root_path):
     check_root()
     if not os.path.exists(os.path.join(root_path, 'benchmark/semeval')):
         os.mkdir(os.path.join(root_path, 'benchmark/semeval'))
-        os.system('wget -P ' + os.path.join(root_path, 'benchmark/semeval') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_rel2id.json')
-        os.system('wget -P ' + os.path.join(root_path, 'benchmark/semeval') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_train.txt')
-        os.system('wget -P ' + os.path.join(root_path, 'benchmark/semeval') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_test.txt')
-        os.system('wget -P ' + os.path.join(root_path, 'benchmark/semeval') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_val.txt')
+        os.system('curl -o ' + os.path.join(root_path, 'benchmark/semeval', 'semeval_rel2id.json') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_rel2id.json')
+        os.system('curl -o ' + os.path.join(root_path, 'benchmark/semeval', 'semeval_train.txt') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_train.txt')
+        os.system('curl -o ' + os.path.join(root_path, 'benchmark/semeval', 'semeval_test.txt') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_test.txt')
+        os.system('curl -o ' + os.path.join(root_path, 'benchmark/semeval', 'semeval_val.txt') + ' ' + root_url + 'opennre/benchmark/semeval/semeval_val.txt')
 
 def download_glove(root_path=default_root_path):
     check_root()
     if not os.path.exists(os.path.join(root_path, 'pretrain/glove')):
         os.mkdir(os.path.join(root_path, 'pretrain/glove'))
-        os.system('wget -P ' + os.path.join(root_path, 'pretrain/glove') +  ' ' + root_url + 'opennre/pretrain/glove/glove.6B.50d_mat.npy')
-        os.system('wget -P ' + os.path.join(root_path, 'pretrain/glove') +  ' ' + root_url + 'opennre/pretrain/glove/glove.6B.50d_word2id.json')
+        os.system('curl -o ' + os.path.join(root_path, 'pretrain/glove', 'glove.6B.50d_mat.npy') + ' ' + root_url + 'opennre/pretrain/glove/glove.6B.50d_mat.npy')
+        os.system('curl -o ' + os.path.join(root_path, 'pretrain/glove', 'glove.6B.50d_word2id.json') + ' ' + root_url + 'opennre/pretrain/glove/glove.6B.50d_word2id.json')
 
 def download_bert_base_uncased(root_path=default_root_path):
     check_root()
@@ -95,7 +95,7 @@ def download_bert_base_uncased(root_path=default_root_path):
 def download_pretrain(model_name, root_path=default_root_path):
     ckpt = os.path.join(root_path, 'pretrain/nre/' + model_name + '.pth.tar')
     if not os.path.exists(ckpt):
-        os.system('wget -P ' + os.path.join(root_path, 'pretrain/nre')  + ' ' + root_url + 'opennre/pretrain/nre/' + model_name + '.pth.tar')
+        os.system('curl -o ' + os.path.join(root_path, 'pretrain/nre', model_name + '.pth.tar') + ' ' + root_url + 'opennre/pretrain/nre/' + model_name + '.pth.tar')
 
 def download(name, root_path=default_root_path):
     if not os.path.exists(os.path.join(root_path, 'benchmark')):
