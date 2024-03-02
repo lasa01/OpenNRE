@@ -9,7 +9,7 @@ import numpy as np
 import logging
 
 root_url = "https://thunlp.oss-cn-qingdao.aliyuncs.com/"
-default_root_path = os.path.join(os.getenv('HOME'), '.opennre')
+default_root_path = os.path.join(os.getenv('HOME'), '.opennre') if os.getenv('HOME') else 'opennre_data'
 
 def check_root(root_path=default_root_path):
     if not os.path.exists(root_path):
