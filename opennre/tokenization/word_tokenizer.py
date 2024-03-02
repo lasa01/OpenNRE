@@ -27,6 +27,7 @@ from .utils import (load_vocab,
                    split_on_whitespace,
                    convert_by_vocab,
                    tokenize_chinese_chars)
+from . import BasicTokenizer
 
 class WordTokenizer(object):
     """Runs WordPiece tokenziation."""
@@ -35,6 +36,7 @@ class WordTokenizer(object):
         self.vocab = load_vocab(vocab)
         self.inv_vocab = {v: k for k, v in self.vocab.items()}
         self.unk_token = unk_token
+        self.basic_tokenizer = BasicTokenizer()
 
     def tokenize(self, text):
         """    Tokenizes a piece of text into its word pieces. This uses a greedy longest-match-first algorithm to perform tokenization
@@ -50,18 +52,7 @@ class WordTokenizer(object):
                 output_tokens: A list of wordpiece tokens.
                 current_positions: A list of the current positions for the original words in text .
         """
-        text = convert_to_unicode(text)
-        text = clean_text(text)
-        text = tokenize_chinese_chars(text)
-        # output_tokens = []
-        token_list = split_on_whitespace(text)
-        # for chars in token_list:
-        #     # current_positions.append([])
-        #     if chars in self.vocab:
-        #         output_tokens.append(chars)
-        #     else:
-        #         output_tokens.append(self.unk_token)                
-        return token_list
+        return self.basic_tokenizer.tokenize(text)[0]
 
     def convert_tokens_to_ids(self, tokens, max_seq_length = None, blank_id = 0, unk_id = 1, uncased = True):
         return convert_by_vocab(self.vocab, tokens, max_seq_length, blank_id, unk_id, uncased=uncased)
